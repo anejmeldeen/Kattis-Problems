@@ -1,11 +1,6 @@
 dept1 = input()
 dept2 = input()
 
-class Node:
-    def __init__(self, vally):
-        self.val = vally
-        self.children = {}
-
 def solve(dept):
     dicty = {}
     stack = []
