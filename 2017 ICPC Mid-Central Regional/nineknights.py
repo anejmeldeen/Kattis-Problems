@@ -3,7 +3,7 @@ for _ in range(5):
     board.append(input())
 
 def is_knight(x, y):
-    if x > 0 and x < 5 and y > 0 and y < 5:
+    if x >= 0 and x < 5 and y >= 0 and y < 5:
         return board[x][y] == "k"
     return False
 
