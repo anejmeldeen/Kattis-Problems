@@ -1,3 +1,3 @@
 # Kattis-Problems
 
-repo of solutions to past ICPC problems
+repo of solutions to ICPC problems
