@@ -1,0 +1,2 @@
+x, y, i, j = list(map(int, input().split()))
+print(0 if (x % 2024 == 0 and y % 2024 == 0 and i % 2024 == 0 and j % 2024 == 0) else (1 if ((x % 2024 == 0 and y % 2024 == 0) or (i % 2024 == 0 and j % 2024 == 0)) else 2))
