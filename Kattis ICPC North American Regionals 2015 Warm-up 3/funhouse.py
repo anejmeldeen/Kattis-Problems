@@ -3,6 +3,7 @@ while (data := input()) != "0 0":
     w, l = list(map(int, data.split()))
     test_no += 1
     board = []
+    
     for _ in range(l):
         board.append(list(input()))
 
