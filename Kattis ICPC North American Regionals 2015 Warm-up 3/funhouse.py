@@ -7,8 +7,7 @@ while (data := input()) != "0 0":
     for _ in range(l):
         board.append(list(input()))
 
-    x = -1
-    y = -1
+    x = y = -1
     direction = 0
     for i in range(l):
         for j in range(w):
