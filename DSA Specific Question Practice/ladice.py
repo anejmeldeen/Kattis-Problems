@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(int(1e9))
+
 n, l = list(map(int, input().split()))
 locations = []
 
