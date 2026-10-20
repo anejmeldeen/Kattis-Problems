@@ -1,87 +1,34 @@
-from collections import deque
+from collections import defaultdict
 
 c, r, e = list(map(int, input().split()))
+
+char_to_orientation = {e: i for i, e in enumerate("NESW")}
+
 robot_data = input().split()
+robot1_x, robot1_y, robot1_oreintation = int(robot_data[0]) - 1, int(robot_data[1]) - 1, char_to_orientation[robot_data[2]]
+robo21_x, robot2_y, robot2_oreintation = int(robot_data[3]) - 1, int(robot_data[4]) - 1, char_to_orientation[robot_data[5]]
 
-char_to_num = {e: i for i, e in enumerate("NESW")}
-diff = (char_to_num[robot_data[5]] - char_to_num[robot_data[2]]) % 4
+restrictions = set()
 
-graph = {}
-for col in range(1, c + 1):
-    for row in range(1, r + 1):
-        conns = set()
-        if col > 1:
-           conns.add((col - 1, row))
-        if row > 1:
-            conns.add((col, row - 1))
-        if col < c:
-            conns.add((col + 1, row))
-        if row < r:
-            conns.add((col, row + 1))
-        graph[(col, row)] = conns
-graph[(e, 1)].add((e, 0))
-graph[(e, 0)] = set()
+for i in range(r):
+    restrictions.add((i, 0, 3))
+    restrictions.add((i, c - 1, 1))
+for j in range(c):
+    restrictions.add((0, j, 0))
+    restrictions.add((r - 1, j, 2))
 
-horizontal_walls = list(map(int, input().split()))
+horizontal_data = list(map(int, input().split()))
 idx = 1
-for _ in range(horizontal_walls[0]):
-    col, row = horizontal_walls[idx], horizontal_walls[idx + 1]
-    graph[(col, row)].discard((col, row + 1))
-    graph[(col, row + 1)].discard((col, row))
+for _ in range(horizontal_data[0]):
+    ci, ri = horizontal_data[idx], horizontal_data[idx + 1]
     idx += 2
+    restrictions.add((ci, ri, 0))
+    restrictions.add((ci, ri - 1, 2))
 
-vertical_walls = list(map(int, input().split()))
+vertical_data = list(map(int, input().split()))
 idx = 1
-for _ in range(vertical_walls[0]):
-    col, row = vertical_walls[idx], vertical_walls[idx + 1]
-    graph[(col, row)].discard((col + 1, row))
-    graph[(col + 1, row)].discard((col, row))
+for _ in range(vertical_data[0]):
+    ci, ri = vertical_data[idx], vertical_data[idx + 1]
     idx += 2
-
-def dir_shift(col, row, dir_num):
-    ncol, nrow = col, row
-    if dir_num == 0:
-        nrow += 1
-    elif dir_num == 1:
-        ncol += 1
-    elif dir_num == 2:
-        nrow -= 1
-    elif dir_num == 3:
-        ncol -= 1
-    return ncol, nrow 
-
-queue = deque()
-queue.append((0, 0, int(robot_data[0]), int(robot_data[1]), int(robot_data[3]), int(robot_data[4])))
-seen = [[[[False] * (r + 1) for _ in range(c + 1)] for _ in range(r + 1)] for _ in range(c + 1)]
-seen[int(robot_data[0])][int(robot_data[1])][int(robot_data[3])][int(robot_data[4])] = True
-sol = (-1, -1)
-while queue:
-    data = queue.popleft()
-    forwards, bumps, col1, row1, col2, row2 = data
-
-    if col1 == e and row1 == 0 and col2 == e and row2 == 0:
-        sol = (forwards, bumps)
-        break
-
-    for dir_num in range(4):
-        ncol1, nrow1 = dir_shift(col1, row1, dir_num)
-        ncol2, nrow2 = dir_shift(col2, row2, (dir_num + diff) % 4)
-        new_bumps = 0
-        
-        if (ncol1, nrow1) not in graph[(col1, row1)]:
-            ncol1, nrow1 = col1, row1
-            if (ncol1 != e or nrow1 != 0):
-                new_bumps += 1
-
-        if (ncol2, nrow2) not in graph[(col2, row2)]:
-            ncol2, nrow2 = col2, row2
-            if (ncol2 != e or nrow2 != 0):
-                new_bumps += 1
-
-        if not seen[ncol1][nrow1][ncol2][nrow2]:
-            if (ncol1 != e or nrow1 != 0) and ncol1 == ncol2 and nrow1 == nrow2:
-                continue
-            seen[ncol1][nrow1][ncol2][nrow2] = True
-            queue.append((forwards + 1, bumps + new_bumps, ncol1, nrow1, ncol2, nrow2))
-        
-print(sol[0], sol[1])
+    restrictions.add((ci, ri, 3))
+    restrictions.add((ci - 1, ri, 1))
