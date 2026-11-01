@@ -1,0 +1,83 @@
+judge: 15615
+program: ? 1 7808
+judge: 1
+program: ? 1 3904
+judge: 0
+program: ? 3905 7808
+judge: 1
+program: ? 3905 5856
+judge: 1
+program: ? 3905 4880
+judge: 0
+program: ? 4881 5856
+judge: 1
+program: ? 4881 5368
+judge: 1
+program: ? 4881 5124
+judge: 0
+program: ? 5125 5368
+judge: 1
+program: ? 5125 5246
+judge: 1
+program: ? 5125 5185
+judge: 0
+program: ? 5186 5246
+judge: 1
+program: ? 5186 5216
+judge: 0
+program: ? 5217 5246
+judge: 1
+program: ? 5217 5231
+judge: 0
+program: ? 5232 5246
+judge: 1
+program: ? 5232 5239
+judge: 1
+program: ? 5232 5235
+judge: 1
+program: ? 5232 5233
+judge: 0
+program: ? 5234 5235
+judge: 1
+program: ? 5234 5234
+judge: 0
+program: ? 5235 5235
+judge: 1
+program: ? 7809 15615
+judge: 1
+program: ? 7809 11712
+judge: 1
+program: ? 7809 9760
+judge: 1
+program: ? 7809 8784
+judge: 1
+program: ? 7809 8296
+judge: 1
+program: ? 7809 8052
+judge: 0
+program: ? 8053 8296
+judge: 1
+program: ? 8053 8174
+judge: 0
+program: ? 8175 8296
+judge: 1
+program: ? 8175 8235
+judge: 1
+program: ? 8175 8205
+judge: 0
+program: ? 8206 8235
+judge: 1
+program: ? 8206 8220
+judge: 0
+program: ? 8221 8235
+judge: 1
+program: ? 8221 8228
+judge: 0
+program: ? 8229 8235
+judge: 1
+program: ? 8229 8232
+judge: 0
+program: ? 8233 8235
+judge: 1
+program: ? 8233 8234
+query budget exceeded (40)
